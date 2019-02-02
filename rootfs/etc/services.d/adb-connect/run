@@ -1,10 +1,17 @@
 #!/usr/bin/with-contenv bash
 
+
 # Wait for ADB to become available
 timeout 60 bash -c \
     "until echo > /dev/tcp/localhost/5037 ; do sleep 0.5; done" \
         > /dev/null 2>&1;
 
+# If the key does not exists yet, it probably is still generating
+if [ ! -f /data/adbkey ]; then
+    sleep 10
+fi
+
+# Try to (re)connect to all devices
 if [ -z "$DEVICES" ]
 then
     echo "Devices list is empty"
