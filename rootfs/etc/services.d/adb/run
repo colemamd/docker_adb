@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bash
+
+declare -a options
+
+# Start options for ADB
+options+=(-a)
+options+=(server)
+options+=(nodaemon)
+
+# Run ADB
+exec adb "${options[@]}"

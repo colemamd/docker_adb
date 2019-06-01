@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv bash
+
+# Wait for ADB to become available
+s6-svwait -u -t 5000 /var/run/s6/services/adb
+
+
+if [ -z "$DEVICES" ]
+then
+    echo "Devices list is empty"
+else
+    IFS=';' read -ra ADDR <<< "$DEVICES"
+    for i in "${ADDR[@]}"; do
+        adb connect $i
+    done
+fi
+# Sleep until next loop
+exec sleep $TIMEOUT
