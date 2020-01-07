@@ -1,8 +1,9 @@
 #!/usr/bin/with-contenv bash
 
 # Wait for ADB to become available
-s6-svwait -u -t 5000 /var/run/s6/services/adb
-
+timeout 60 bash -c \
+    "until echo > /dev/tcp/localhost/5037 ; do sleep 0.5; done" \
+        > /dev/null 2>&1;
 
 if [ -z "$DEVICES" ]
 then
@@ -13,5 +14,6 @@ else
         adb connect $i
     done
 fi
+
 # Sleep until next loop
 exec sleep $TIMEOUT
