@@ -1,13 +1,13 @@
 FROM ubuntu:bionic
 
-ARG OVERLAY_VERSION="v1.22.1.0"
+ARG OVERLAY_VERSION="v2.1.0.0"
 ARG OVERLAY_ARCH="amd64"
 
 RUN \
   apt-get update && \
   apt-get install -y --no-install-recommends ca-certificates curl \
     adb=1:7.0.0+r33-2 \
-    android-libadb=1:7.0.0+r33-25 \
+    android-libadb=1:7.0.0+r33-2 \
     android-libbase=1:7.0.0+r33-2 \
     android-libcutils=1:7.0.0+r33-2 \
     android-liblog=1:7.0.0+r33-2 && \
