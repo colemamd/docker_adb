@@ -14,7 +14,7 @@ fi
 # Try to (re)connect to all devices
 if [ -z "$DEVICES" ]
 then
-    echo "Devices list is empty"
+    echo -e "Devices list is empty" >&2
 else
     IFS=';' read -ra ADDR <<< "$DEVICES"
     for i in "${ADDR[@]}"; do
