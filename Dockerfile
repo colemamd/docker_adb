@@ -1,7 +1,7 @@
 FROM ubuntu:bionic
 
 ARG OVERLAY_VERSION="v2.1.0.0"
-ARG OVERLAY_ARCH="amd64"
+ARG OVERLAY_ARCH="armhf"
 
 RUN \
   apt-get update && \
